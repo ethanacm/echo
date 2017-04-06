@@ -8,8 +8,12 @@ def on():
     GPIO.setwarnings(False)
     GPIO.setup(16, GPIO.OUT)
     GPIO.output(16, GPIO.HIGH)
+
+    print "going high"
+
     time.sleep(1)
     GPIO.output(16, GPIO.LOW)
+    GPIO.cleanup()
 
 def off():
     print "off"
@@ -17,8 +21,9 @@ def off():
     GPIO.setwarnings(False)
     GPIO.setup(26, GPIO.OUT)
     GPIO.output(26, GPIO.HIGH)
+    time.sleep(1)
     GPIO.output(26, GPIO.LOW)
-
+    GPIO.cleanup()
 '''
 def setup():
     led = 11
