@@ -25,17 +25,21 @@ class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
-    TRIGGERS = {"gooseberg": 52000
+    TRIGGERS = {"gooseberg": 52000,
                 "christmas": 52001}
 
     def act(self, client_address, state, name):
+	print name
         print "State", state, "on ", name, "from client @", client_address
-        if state == True:
-            gpio_handler.on()
-        else:
-            gpio_handler.off()
-        return True
-            
+	if name == "gooseberg":
+
+            if state == True:
+               gpio_handler.on()
+            else:
+               gpio_handler.off()
+            return True
+	else:
+	    return True     
 
 if __name__ == "__main__":
     # Startup the fauxmo server

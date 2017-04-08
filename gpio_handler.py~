@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
-from subprocess import call
+
 
 def on():
     print "on"
@@ -71,12 +71,8 @@ def test():
     GPIO.setup(16, GPIO.OUT) # on
     g_on()
     g_off()
-    #GPIO.cleanup()
-def test_flash():
-    call(["zap5-setup"])
-    for i in range(15):
-	call(["zap5-off"])
-	call(["zap5-on"])
+    GPIO.cleanup()
+
 
 if __name__ == "__main__":
-    test_flash()
+    test()
