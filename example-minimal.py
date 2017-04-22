@@ -52,7 +52,7 @@ class device_handler(debounce_handler):
                 o_handler.turn_off(4)
 
         elif name == "flash":
-            for i in range(15)
+            for i in range(15):
                 o_handler.turn_on(1)
                 o_handler.turn_off(4)
                 time.sleep(.1)
