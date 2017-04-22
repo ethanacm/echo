@@ -16,30 +16,53 @@ import fauxmo
 import logging
 import time
 import gpio_handler
+import outlet_handler
+import time
 
 from debounce_handler import debounce_handler
 
 logging.basicConfig(level=logging.DEBUG)
+
+o_handler = outlet_handler.OutletHandler()
 
 class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
     TRIGGERS = {"gooseberg": 52000,
-                "christmas": 52001}
+                "christmas": 52001,
+                "flash": 52002,
+                "goose strobe": 52003}
+
+
 
     def act(self, client_address, state, name):
-	print name
-        print "State", state, "on ", name, "from client @", client_address
-	if name == "gooseberg":
+        #print name
+        #print "State", state, "on ", name, "from client @", client_address
+        if name == "gooseberg":
+                if state == True:
+                   o_handler.turn_on(1)
+                else:
+                   o_handler.turn_off(1)
 
+        elif name == "christmas":
             if state == True:
-               gpio_handler.on()
+                o_handler.turn_on(4)
             else:
-               gpio_handler.off()
-            return True
-	else:
-	    return True     
+                o_handler.turn_off(4)
+
+        elif name == "flash":
+            for i in range(15)
+                o_handler.turn_on(1)
+                o_handler.turn_off(4)
+                time.sleep(.1)
+                o_handler.turn_off(1)
+                o_handler.turn_on(4)
+
+
+        return True
+
+
 
 if __name__ == "__main__":
     # Startup the fauxmo server
