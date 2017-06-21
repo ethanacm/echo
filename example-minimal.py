@@ -29,35 +29,52 @@ class device_handler(debounce_handler):
     """Publishes the on/off state requested,
        and the IP address of the Echo making the request.
     """
-    TRIGGERS = {"gooseberg": 52000,
-                "christmas": 52001,
-                "flash": 52002,
-                "goose strobe": 52003}
+    TRIGGERS = {"bookshelf lamp": 52000,
+                "recliner lamp": 52001,
+                "phyllis's lamp": 52003,
+                "dining room lamp": 52004,
+                #"flash": 52002,
+                "circle": 52005}
 
 
 
     def act(self, client_address, state, name):
         #print name
         #print "State", state, "on ", name, "from client @", client_address
-        if name == "gooseberg":
-                if state == True:
+        if name == "bookshelf lamp":
+                if state:
                    o_handler.turn_on(1)
                 else:
                    o_handler.turn_off(1)
 
-        elif name == "christmas":
-            if state == True:
+        elif name == "recliner lamp" or name == "phyllis's lamp":
+            if state:
+                o_handler.turn_on(2)
+            else:
+                o_handler.turn_off(2)
+
+        elif name == "dining room lamp":
+            if state:
                 o_handler.turn_on(4)
             else:
                 o_handler.turn_off(4)
 
-        elif name == "flash":
-            for i in range(15):
+        elif name == "circle":
+
+            for i in range(4):
                 o_handler.turn_on(1)
-                o_handler.turn_off(4)
                 time.sleep(.1)
                 o_handler.turn_off(1)
+                time.sleep(.05)
+                o_handler.turn_on(2)
+                time.sleep(.1)
+                o_handler.turn_off(2)
+                time.sleep(.05)
                 o_handler.turn_on(4)
+                time.sleep(.1)
+                o_handler.turn_off(4)
+                time.sleep(.05)
+
 
 
         return True
