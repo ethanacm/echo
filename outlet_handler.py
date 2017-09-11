@@ -3,7 +3,7 @@ import os
 
 class OutletHandler:
     def __init__(self):
-        self.gpio_dict = {1: [16, 26], 2: [12, 20], 3: [21, 19], 4: [13, 6]}
+        self.gpio_dict = {1: [16, 26], 2: [12, 20], 5: [21, 19], 4: [13, 6]}
         for key in self.gpio_dict:
             os.system("sudo sh outlet_setup.sh " + str(self.gpio_dict[key][0]) + " " + str(self.gpio_dict[key][1])) #setup all outlets
 
