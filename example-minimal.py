@@ -31,8 +31,8 @@ class device_handler(debounce_handler):
     """
     TRIGGERS = {"gooseberg": 52000,
                 "two": 52001,
-                "four": 52003,
-                "five": 52004,
+                "the fan": 52003,
+                "christmas": 52004,
                 #"flash": 52002,
                 "circle": 52005}
 
