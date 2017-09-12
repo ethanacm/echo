@@ -53,13 +53,13 @@ class device_handler(debounce_handler):
             else:
                 o_handler.turn_off(2)
 
-        elif name == "four":
+        elif name == "the fan":
             if state:
                 o_handler.turn_on(4)
             else:
                 o_handler.turn_off(4)
 
-        elif name == "five":
+        elif name == "christmas":
             if state:
                 o_handler.turn_on(5)
             else:
